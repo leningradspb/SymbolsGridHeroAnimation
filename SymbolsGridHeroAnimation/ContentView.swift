@@ -17,14 +17,13 @@ struct ContentView: View {
            
             if let selectedSymbol {
                 Image(systemName: selectedSymbol)
-                    .font(.system(size: 70))
                     .matchedGeometryEffect(id: selectedSymbol, in: namespace)
+                    .font(.system(size: 70))
                     .onTapGesture {
                         withAnimation {
                             self.selectedSymbol = nil
                         }
-                    }
-                    .animation(.spring())
+                    }.animation(.spring(), value: 1)
                 
                 Spacer()
             } else {
@@ -35,11 +34,13 @@ struct ContentView: View {
                             .padding()
                             .matchedGeometryEffect(id: symbol, in: namespace)
                             .onTapGesture {
-                                selectedSymbol = symbol
+                                withAnimation {
+                                    selectedSymbol = symbol
+                                }
                             }
                     }
                 }
-                .animation(.spring())
+                .animation(.spring(), value: 1)
             }
         }
     }
