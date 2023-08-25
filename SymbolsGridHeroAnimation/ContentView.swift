@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedSymbol: String?
+    
+    let symbols = ["square.and.arrow.up", "pencil.circle", "pencil.slash", "pencil.line", "folder.fill", "lasso", "eraser.fill", "pencil.and.outline", "trash"]
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+           
+            if let selectedSymbol {
+                Image(systemName: selectedSymbol)
+                    .font(.system(size: 70))
+            } else {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+                    ForEach(symbols, id: \.self) { symbol in
+                        Image(systemName: symbol)
+                            .font(.system(size: 40))
+                            .padding()
+                            .onTapGesture {
+                                selectedSymbol = symbol
+                            }
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
