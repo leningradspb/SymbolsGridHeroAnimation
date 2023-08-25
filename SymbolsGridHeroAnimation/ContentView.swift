@@ -23,7 +23,9 @@ struct ContentView: View {
                         withAnimation {
                             self.selectedSymbol = nil
                         }
-                    }.animation(.spring(), value: 1)
+                    }
+                //doesent work
+//                    .animation(.spring(), value: 1)
                 
                 Spacer()
             } else {
@@ -40,7 +42,8 @@ struct ContentView: View {
                             }
                     }
                 }
-                .animation(.spring(), value: 1)
+                //doesent work
+//                .animation(.spring(), value: 1)
             }
         }
     }
