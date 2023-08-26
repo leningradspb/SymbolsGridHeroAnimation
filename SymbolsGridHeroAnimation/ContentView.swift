@@ -29,23 +29,45 @@ struct ContentView: View {
                 
                 Spacer()
             } else {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
-                    ForEach(symbols, id: \.self) { symbol in
-                        Image(systemName: symbol)
-                            .font(.system(size: 40))
-                            .padding()
-                            .matchedGeometryEffect(id: symbol, in: namespace)
-                            .onTapGesture {
-                                withAnimation {
-                                    selectedSymbol = symbol
-                                }
-                            }
-                    }
-                }
-                //doesent work
-//                .animation(.spring(), value: 1)
+//                setupLazyGrid()
+                setupList()
             }
         }
+    }
+    
+    private func setupLazyGrid() -> some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+            ForEach(symbols, id: \.self) { symbol in
+                Image(systemName: symbol)
+                    .font(.system(size: 40))
+                    .padding()
+                    .matchedGeometryEffect(id: symbol, in: namespace)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedSymbol = symbol
+                        }
+                    }
+            }
+        }
+        //doesent work
+//                .animation(.spring(), value: 1)
+    }
+    
+    private func setupList() -> some View {
+            List(symbols, id: \.self) { symbol in
+                Image(systemName: symbol)
+                    .font(.system(size: 40))
+                    .padding()
+                    .matchedGeometryEffect(id: symbol, in: namespace)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedSymbol = symbol
+                        }
+                    }
+            }
+        
+        //doesent work
+//                .animation(.spring(), value: 1)
     }
 }
 
